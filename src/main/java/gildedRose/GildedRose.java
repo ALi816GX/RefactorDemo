@@ -9,7 +9,7 @@ public class GildedRose {
 
     public void updateQuality() {
 
-        for (Item each:items) {
+        for(Item each:items) {
             
             if (!isAged_brie(each) && !isBackstage_Passes(each)) {
                 if (each.quality > 0) {
