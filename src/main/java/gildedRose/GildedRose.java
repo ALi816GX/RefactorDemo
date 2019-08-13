@@ -7,21 +7,16 @@ public class GildedRose {
     public GildedRose(Item[] items) {
         this.items = items;
     }
-    
+
 
     public void updateQuality() {
         for (Item each : items) {
 
             //-----normal-----//
 
-            if (!isAged_brie(each) && !isBackstage_Passes(each) && !isSulfuras(each) && isQulityOver0(each)) {
+            if (isNormal(each)) {
 
-                decreaseQuality(each);
-                decreaseSellIn(each);
-
-                if (isSellInLess0(each) && isQulityWithin50(each)) {
-                    decreaseQuality(each);
-                }
+                handleNormalItem(each);
 
             }
 
@@ -77,8 +72,6 @@ public class GildedRose {
                     increaseQuality(each);
                 }
 
-                decreaseSellIn(each);
-
                 if (isSellInLess0(each) && isQulityOver0(each) && !isSulfuras(each)) {
                     decreaseQuality(each);
                 }
@@ -88,6 +81,22 @@ public class GildedRose {
 
         }
 
+    }
+
+    private void handleNormalItem(Item each) {
+        if (isQulityOver0(each)) {
+            decreaseQuality(each);
+        }
+
+        decreaseSellIn(each);
+
+        if (isSellInLess0(each) && isQulityWithin50(each)) {
+            decreaseQuality(each);
+        }
+    }
+
+    private boolean isNormal(Item each) {
+        return !isAged_brie(each) && !isBackstage_Passes(each) && !isSulfuras(each);
     }
 
     private boolean isSellInLess0(Item each) {
