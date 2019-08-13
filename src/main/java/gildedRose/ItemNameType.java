@@ -13,5 +13,6 @@ public interface ItemNameType {
     String AGED_BRIE = "Aged Brie" ;
     String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     String SULFURAS = "Sulfuras, Hand of Ragnaros" ;
+    String CONJURED = "Conjured, Double Fast" ;
 
 }
