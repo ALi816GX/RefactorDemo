@@ -1,4 +1,5 @@
 package gildedRose;
+
 public class GildedRose {
 
     Item[] items;
@@ -7,16 +8,14 @@ public class GildedRose {
         this.items = items;
     }
 
-    public void updateQuality() {
+    public void updateQuality2() {
 
-        for(Item each:items) {
-            
-            if (!isAged_brie(each) && !isBackstage_Passes(each)) {
-                if (isQulityOver0(each)) {
-                    if (!isSulfuras(each)) {
-                        decreaseQuality(each);
-                    }
-                }
+        for (Item each : items) {
+
+            if (!isAged_brie(each) && !isBackstage_Passes(each) && !isSulfuras(each) && isQulityOver0(each)) {
+
+                decreaseQuality(each);
+
             } else {
                 if (isQulityWithin50(each)) {
                     increaseQuality(each);
@@ -30,21 +29,19 @@ public class GildedRose {
                             increaseQuality(each);
                         }
                     }
+
                 }
             }
 
             decreaseSellIn(each);
 
-            if (each.sellIn < 0) {
+            if (isSellInLess0(each)) {
                 if (!isAged_brie(each)) {
                     if (!isBackstage_Passes(each)) {
-                        if (isQulityOver0(each)) {
-                            if (!isSulfuras(each)) {
-                                decreaseQuality(each);
-                            }
+                        if (isQulityOver0(each) && !isSulfuras(each)) {
+                            decreaseQuality(each);
                         }
-                    }
-                    else {
+                    } else {
                         clear0Quality(each);
                     }
                 } else {
@@ -52,6 +49,91 @@ public class GildedRose {
                 }
             }
         }
+    }
+
+    public void updateQuality() {
+        for (Item each : items) {
+
+            //-----normal-----//
+
+            if (!isAged_brie(each) && !isBackstage_Passes(each) && !isSulfuras(each) && isQulityOver0(each)) {
+
+                decreaseQuality(each);
+                decreaseSellIn(each);
+
+                if (isSellInLess0(each) && isQulityWithin50(each)) {
+                    decreaseQuality(each);
+                }
+
+            }
+
+            //-----Aged Brie-----//
+
+            else if (isAged_brie(each)) {
+
+                if (isQulityWithin50(each)) {
+                    increaseQuality(each);
+                }
+
+                decreaseSellIn(each);
+
+                if (isSellInLess0(each)) {
+                    if (!isAged_brie(each) && isQulityOver0(each)) {
+                        decreaseQuality(each);
+                    } else {
+                        increaseQuality(each);
+                    }
+                }
+
+            }
+
+            //-----Backstage Passes-----//
+            else if (isBackstage_Passes(each)) {
+
+                if (isQulityWithin50(each)) {
+                    increaseQuality(each);
+
+                    if (each.sellIn < 11) {
+                        increaseQuality(each);
+                    }
+
+                    if (each.sellIn < 6) {
+                        increaseQuality(each);
+                    }
+
+                }
+
+                decreaseSellIn(each);
+
+                if (isSellInLess0(each)) {
+                    clear0Quality(each);
+                }
+
+            }
+
+
+            //-----Sulfuras-----//
+            else if (isSulfuras(each)) {
+
+                if (isQulityWithin50(each)) {
+                    increaseQuality(each);
+                }
+
+                decreaseSellIn(each);
+
+                if (isSellInLess0(each) && isQulityOver0(each) && !isSulfuras(each)) {
+                    decreaseQuality(each);
+                }
+
+            }
+
+
+        }
+
+    }
+
+    private boolean isSellInLess0(Item each) {
+        return each.sellIn < 0;
     }
 
     private boolean isQulityWithin50(Item each) {
@@ -79,7 +161,7 @@ public class GildedRose {
     }
 
     private void decreaseQuality(Item item) {
-            item.quality = item.quality - 1;
+        item.quality = item.quality - 1;
     }
 
 

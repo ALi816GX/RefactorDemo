@@ -34,7 +34,7 @@ public class GildedRoseTest {
 
 
     @Test
-    public void should_return_item_given_a_normal_item_its_sellIn_is_0_quality_is_10(){
+    public void should_return_item_given_a_normal_item_its_sellIn_is_0_quality_is_10() {
 
         Item item = new Item("normal", 0, 10);
         Item[] items = {item};
@@ -65,9 +65,8 @@ public class GildedRoseTest {
     }
 
 
-
     @Test
-    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_5_quality_is_50(){
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_5_quality_is_50() {
         Item item = new Item("Aged Brie", 5, 50);
         Item[] items = {item};
 
@@ -80,9 +79,8 @@ public class GildedRoseTest {
     }
 
 
-
     @Test
-    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_10(){
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_10() {
         Item item = new Item("Aged Brie", 0, 10);
         Item[] items = {item};
 
@@ -95,7 +93,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_50(){
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_50() {
         Item item = new Item("Aged Brie", 0, 50);
         Item[] items = {item};
 
@@ -108,12 +106,11 @@ public class GildedRoseTest {
     }
 
 
-
     //----- Backstage passes -----//
 
 
     @Test
-    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_15_quality_is_20(){
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_15_quality_is_20() {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
         Item[] items = {item};
 
@@ -126,7 +123,7 @@ public class GildedRoseTest {
     }
 
     @Test
-    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_10_quality_is_20()  {
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_10_quality_is_20() {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20);
         Item[] items = {item};
 
@@ -140,7 +137,7 @@ public class GildedRoseTest {
 
 
     @Test
-    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_5_quality_is_20()  {
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_5_quality_is_20() {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20);
         Item[] items = {item};
 
@@ -153,10 +150,8 @@ public class GildedRoseTest {
     }
 
 
-
-
     @Test
-    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_0_quality_is_20()  {
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_0_quality_is_20() {
         Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20);
         Item[] items = {item};
 
@@ -173,7 +168,7 @@ public class GildedRoseTest {
 
 
     @Test
-    public void should_return_item_given_an_Sulfuras_item_its_sellIn_is_0_quality_is_20()  {
+    public void should_return_item_given_an_Sulfuras_item_its_sellIn_is_0_quality_is_20() {
         Item item = new Item("Sulfuras, Hand of Ragnaros", 5, 80);
         Item[] items = {item};
 
@@ -184,10 +179,6 @@ public class GildedRoseTest {
 
         Assert.assertEquals("Sulfuras, Hand of Ragnaros, 5, 80", result.toString());
     }
-
-
-
-
 
 
 }
