@@ -33,84 +33,55 @@ public class GildedRose {
 
     private void handleSulfurasItem(Item each) {
 
-        increaseQualityWithin50(each);
+        each.increaseQualityWithin50();
 
     }
 
-    private void handleBackstagePassesItem(Item each) {
-        if (isQulityWithin50(each)) {
+    public void handleBackstagePassesItem(Item each) {
+        if (each.isQulityWithin50()) {
 
-            increaseQualityWithin50(each);
+            each.increaseQualityWithin50();
 
             if (each.sellIn < 11) {
-                increaseQualityWithin50(each);
+                each.increaseQualityWithin50();
             }
 
             if (each.sellIn < 6) {
-                increaseQualityWithin50(each);
+                each.increaseQualityWithin50();
             }
 
         }
 
-        decreaseSellIn(each);
+        each.decreaseSellIn();
 
-        if (isSellInLess0(each)) {
-            clearQualityto0(each);
+        if (each.isSellInLess0()) {
+            each.clearQualityto0();
         }
 
     }
 
     private void handleAgedBrieItem(Item each) {
 
-        increaseQualityWithin50(each);
+        each.increaseQualityWithin50();
 
-        decreaseSellIn(each);
+        each.decreaseSellIn();
 
-        if (isSellInLess0(each)) {
-            increaseQualityWithin50(each);
+        if (each.isSellInLess0()) {
+            each.increaseQualityWithin50();
         }
     }
 
     private void handleNormalItem(Item each) {
-        if (isQulityOver0(each)) {
-            decreaseQuality(each);
+        if (each.isQulityOver0()) {
+            each.decreaseQuality();
         }
 
-        decreaseSellIn(each);
+        each.decreaseSellIn();
 
-        if (isSellInLess0(each) && isQulityWithin50(each)) {
-            decreaseQuality(each);
-        }
-    }
-
-    private boolean isSellInLess0(Item each) {
-        return each.sellIn < 0;
-    }
-
-    private boolean isQulityWithin50(Item each) {
-        return each.quality < 50;
-    }
-
-    private boolean isQulityOver0(Item each) {
-        return each.quality > 0;
-    }
-
-    private void clearQualityto0(Item each) {
-        each.quality = 0;
-    }
-
-    private void decreaseSellIn(Item each) {
-        each.sellIn--;
-    }
-
-    private void increaseQualityWithin50(Item item) {
-        if (isQulityWithin50(item)) {
-            item.quality++;
+        if (each.isSellInLess0() && each.isQulityWithin50()) {
+            each.decreaseQuality();
         }
     }
 
-    private void decreaseQuality(Item item) {
-        item.quality--;
-    }
 
 }
