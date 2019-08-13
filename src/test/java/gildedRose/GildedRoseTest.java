@@ -169,6 +169,21 @@ public class GildedRoseTest {
     }
 
 
+    //----- Sulfuras -----//
+
+
+    @Test
+    public void should_return_item_given_an_Sulfuras_item_its_sellIn_is_0_quality_is_20()  {
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 5, 80);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Sulfuras, Hand of Ragnaros, 5, 80", result.toString());
+    }
 
 
 
