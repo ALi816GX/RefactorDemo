@@ -49,6 +49,65 @@ public class GildedRoseTest {
     }
 
 
+    //-----Aged Brie-----//
+
+    @Test
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_5_quality_is_10() {
+        Item item = new Item("Aged Brie", 5, 10);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Aged Brie, 4, 11", result.toString());
+    }
+
+
+
+    @Test
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_5_quality_is_50(){
+        Item item = new Item("Aged Brie", 5, 50);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Aged Brie, 4, 50", result.toString());
+    }
+
+
+
+    @Test
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_10(){
+        Item item = new Item("Aged Brie", 0, 10);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Aged Brie, -1, 12", result.toString());
+    }
+
+    @Test
+    public void should_return_item_given_an_Aged_Brie_item_its_sellIn_is_0_quality_is_50(){
+        Item item = new Item("Aged Brie", 0, 50);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Aged Brie, -1, 50", result.toString());
+    }
+
+
 
 
 
