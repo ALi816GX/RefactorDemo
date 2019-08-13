@@ -14,6 +14,16 @@ import gildedRose.UpdateItemStrategy;
 public class Conjured implements UpdateItemStrategy {
     @Override
     public void handle(Item item) {
+        if (item.isQulityOver0()) {
+            item.decreaseQuality();
+            item.decreaseQuality();
+        }
 
+        item.decreaseSellIn();
+
+        if (item.isSellInLess0() && item.isQulityWithin50()) {
+            item.decreaseQuality();
+            item.decreaseQuality();
+        }
     }
 }

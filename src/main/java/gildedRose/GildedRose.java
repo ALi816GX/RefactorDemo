@@ -1,9 +1,6 @@
 package gildedRose;
 
-import gildedRose.ConcreteStrategyImpl.AgedBrie;
-import gildedRose.ConcreteStrategyImpl.BackstagePasses;
-import gildedRose.ConcreteStrategyImpl.Normal;
-import gildedRose.ConcreteStrategyImpl.Sulfuras;
+import gildedRose.ConcreteStrategyImpl.*;
 
 public class GildedRose {
 
@@ -28,6 +25,9 @@ public class GildedRose {
                     break;
                 case ItemNameType.SULFURAS:
                     updateItemStrategy = new Sulfuras();
+                    break;
+                case ItemNameType.CONJURED:
+                    updateItemStrategy = new Conjured();
                     break;
                 default:
                     updateItemStrategy = new Normal();

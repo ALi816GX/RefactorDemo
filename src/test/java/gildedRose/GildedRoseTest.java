@@ -180,5 +180,36 @@ public class GildedRoseTest {
         Assert.assertEquals("Sulfuras, Hand of Ragnaros, 5, 80", result.toString());
     }
 
+    //----- Conjured -----//
+
+    @Test
+    public void should_return_item_given_an_Conjured_item_its_sellIn_is_5_quality_is_10() {
+        Item item = new Item("Conjured, Double Fast", 5, 10);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Conjured, Double Fast, 4, 8", result.toString());
+    }
+
+
+    @Test
+    public void should_return_item_given_an_Conjured_item_its_sellIn_is_0_quality_is_20() {
+        Item item = new Item("Conjured, Double Fast", 0, 10);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Conjured, Double Fast, -1, 6", result.toString());
+    }
+
+
+
 
 }
