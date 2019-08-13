@@ -12,25 +12,20 @@ public class GildedRose {
 
         for (Item each : items) {
 
-
-            if (isNormal(each)) {
-
-                handleNormalItem(each);
-
-            } else if (isAged_brie(each)) {
-
-                handleAgedBrieItem(each);
-
-            } else if (isBackstage_Passes(each)) {
-
-                handleBackstagePassesItem(each);
-
-            } else if (isSulfuras(each)) {
-
-                handleSulfurasItem(each);
-
+            switch (each.name) {
+                case ItemNameType.AGED_BRIE:
+                    handleAgedBrieItem(each);
+                    break;
+                case ItemNameType.BACKSTAGE_PASSES:
+                    handleBackstagePassesItem(each);
+                    break;
+                case ItemNameType.SULFURAS:
+                    handleSulfurasItem(each);
+                    break;
+                default:
+                    handleNormalItem(each);
+                    break;
             }
-
 
         }
 
