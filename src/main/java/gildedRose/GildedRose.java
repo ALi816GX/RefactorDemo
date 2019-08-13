@@ -12,13 +12,13 @@ public class GildedRose {
         for(Item each:items) {
             
             if (!isAged_brie(each) && !isBackstage_Passes(each)) {
-                if (each.quality > 0) {
+                if (isQulityOver0(each)) {
                     if (!isSulfuras(each)) {
                         decreaseQuality(each);
                     }
                 }
             } else {
-                if (each.quality < 50) {
+                if (isQulityWithin50(each)) {
                     increaseQuality(each);
 
                     if (isBackstage_Passes(each)) {
@@ -38,7 +38,7 @@ public class GildedRose {
             if (each.sellIn < 0) {
                 if (!isAged_brie(each)) {
                     if (!isBackstage_Passes(each)) {
-                        if (each.quality > 0) {
+                        if (isQulityOver0(each)) {
                             if (!isSulfuras(each)) {
                                 decreaseQuality(each);
                             }
@@ -54,6 +54,14 @@ public class GildedRose {
         }
     }
 
+    private boolean isQulityWithin50(Item each) {
+        return each.quality < 50;
+    }
+
+    private boolean isQulityOver0(Item each) {
+        return each.quality > 0;
+    }
+
     private void clear0Quality(Item each) {
         each.quality = 0;
     }
@@ -65,7 +73,7 @@ public class GildedRose {
     }
 
     private void increaseQuality(Item item) {
-        if (item.quality < 50) {
+        if (isQulityWithin50(item)) {
             item.quality = item.quality + 1;
         }
     }
