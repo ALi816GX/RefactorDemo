@@ -12,7 +12,6 @@ public class GildedRose {
     public void updateQuality() {
         for (Item each : items) {
 
-            //-----normal-----//
 
             if (isNormal(each)) {
 
@@ -20,7 +19,6 @@ public class GildedRose {
 
             }
 
-            //-----Aged Brie-----//
 
             else if (isAged_brie(each)) {
 
@@ -28,47 +26,53 @@ public class GildedRose {
 
             }
 
-            //-----Backstage Passes-----//
             else if (isBackstage_Passes(each)) {
 
-                if (isQulityWithin50(each)) {
-                    increaseQuality(each);
-
-                    if (each.sellIn < 11) {
-                        increaseQuality(each);
-                    }
-
-                    if (each.sellIn < 6) {
-                        increaseQuality(each);
-                    }
-
-                }
-
-                decreaseSellIn(each);
-
-                if (isSellInLess0(each)) {
-                    clear0Quality(each);
-                }
+                handleBackstagePassesItem(each);
 
             }
 
 
-            //-----Sulfuras-----//
             else if (isSulfuras(each)) {
 
-                if (isQulityWithin50(each)) {
-                    increaseQuality(each);
-                }
-
-                if (isSellInLess0(each) && isQulityOver0(each) && !isSulfuras(each)) {
-                    decreaseQuality(each);
-                }
+                handleSulfurasItem(each);
 
             }
 
 
         }
 
+    }
+
+    private void handleSulfurasItem(Item each) {
+        if (isQulityWithin50(each)) {
+            increaseQuality(each);
+        }
+
+        if (isSellInLess0(each) && isQulityOver0(each) && !isSulfuras(each)) {
+            decreaseQuality(each);
+        }
+    }
+
+    private void handleBackstagePassesItem(Item each) {
+        if (isQulityWithin50(each)) {
+            increaseQuality(each);
+
+            if (each.sellIn < 11) {
+                increaseQuality(each);
+            }
+
+            if (each.sellIn < 6) {
+                increaseQuality(each);
+            }
+
+        }
+
+        decreaseSellIn(each);
+
+        if (isSellInLess0(each)) {
+            clear0Quality(each);
+        }
     }
 
     private void handleAgedBrieItem(Item each) {
