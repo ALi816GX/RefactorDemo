@@ -8,47 +8,49 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!isAged_brie(items[i]) && !isBackstage_Passes(items[i])) {
-                if (items[i].quality > 0) {
-                    if (!isSulfuras(items[i])) {
-                        decreaseQuality(items[i]);
+
+        for (Item each:items) {
+            
+            if (!isAged_brie(each) && !isBackstage_Passes(each)) {
+                if (each.quality > 0) {
+                    if (!isSulfuras(each)) {
+                        decreaseQuality(each);
                     }
                 }
             } else {
-                if (items[i].quality < 50) {
-                    increaseQuality(items[i]);
+                if (each.quality < 50) {
+                    increaseQuality(each);
 
-                    if (isBackstage_Passes(items[i])) {
-                        if (items[i].sellIn < 11) {
-                            increaseQuality(items[i]);
+                    if (isBackstage_Passes(each)) {
+                        if (each.sellIn < 11) {
+                            increaseQuality(each);
                         }
 
-                        if (items[i].sellIn < 6) {
-                            increaseQuality(items[i]);
+                        if (each.sellIn < 6) {
+                            increaseQuality(each);
                         }
                     }
                 }
             }
 
-            if (!isSulfuras(items[i])) {
-                items[i].sellIn = items[i].sellIn - 1;
+            if (!isSulfuras(each)) {
+                each.sellIn = each.sellIn - 1;
             }
 
-            if (items[i].sellIn < 0) {
-                if (!isAged_brie(items[i])) {
-                    if (!isBackstage_Passes(items[i])) {
-                        if (items[i].quality > 0) {
-                            if (!isSulfuras(items[i])) {
-                                decreaseQuality(items[i]);
+            if (each.sellIn < 0) {
+                if (!isAged_brie(each)) {
+                    if (!isBackstage_Passes(each)) {
+                        if (each.quality > 0) {
+                            if (!isSulfuras(each)) {
+                                decreaseQuality(each);
                             }
                         }
                     }
                     else {
-                        items[i].quality = items[i].quality - items[i].quality;
+                        each.quality = each.quality - each.quality;
                     }
                 } else {
-                    increaseQuality(items[i]);
+                    increaseQuality(each);
                 }
             }
         }
