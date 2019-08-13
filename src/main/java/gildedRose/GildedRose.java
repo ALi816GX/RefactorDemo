@@ -7,49 +7,7 @@ public class GildedRose {
     public GildedRose(Item[] items) {
         this.items = items;
     }
-
-    public void updateQuality2() {
-
-        for (Item each : items) {
-
-            if (!isAged_brie(each) && !isBackstage_Passes(each) && !isSulfuras(each) && isQulityOver0(each)) {
-
-                decreaseQuality(each);
-
-            } else {
-                if (isQulityWithin50(each)) {
-                    increaseQuality(each);
-
-                    if (isBackstage_Passes(each)) {
-                        if (each.sellIn < 11) {
-                            increaseQuality(each);
-                        }
-
-                        if (each.sellIn < 6) {
-                            increaseQuality(each);
-                        }
-                    }
-
-                }
-            }
-
-            decreaseSellIn(each);
-
-            if (isSellInLess0(each)) {
-                if (!isAged_brie(each)) {
-                    if (!isBackstage_Passes(each)) {
-                        if (isQulityOver0(each) && !isSulfuras(each)) {
-                            decreaseQuality(each);
-                        }
-                    } else {
-                        clear0Quality(each);
-                    }
-                } else {
-                    increaseQuality(each);
-                }
-            }
-        }
-    }
+    
 
     public void updateQuality() {
         for (Item each : items) {
