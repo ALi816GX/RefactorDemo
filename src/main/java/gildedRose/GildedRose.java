@@ -33,9 +33,7 @@ public class GildedRose {
                 }
             }
 
-            if (!isSulfuras(each)) {
-                each.sellIn = each.sellIn - 1;
-            }
+            decreaseSellIn(each);
 
             if (each.sellIn < 0) {
                 if (!isAged_brie(each)) {
@@ -47,12 +45,22 @@ public class GildedRose {
                         }
                     }
                     else {
-                        each.quality = each.quality - each.quality;
+                        clear0Quality(each);
                     }
                 } else {
                     increaseQuality(each);
                 }
             }
+        }
+    }
+
+    private void clear0Quality(Item each) {
+        each.quality = 0;
+    }
+
+    private void decreaseSellIn(Item each) {
+        if (!isSulfuras(each)) {
+            each.sellIn--;
         }
     }
 
