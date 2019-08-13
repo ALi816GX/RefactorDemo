@@ -14,6 +14,24 @@ import gildedRose.UpdateItemStrategy;
 public class BackstagePasses implements UpdateItemStrategy {
     @Override
     public void handle(Item item) {
+        if (item.isQulityWithin50()) {
 
+            item.increaseQualityWithin50();
+
+            if (item.sellIn < 11) {
+                item.increaseQualityWithin50();
+            }
+
+            if (item.sellIn < 6) {
+                item.increaseQualityWithin50();
+            }
+
+        }
+
+        item.decreaseSellIn();
+
+        if (item.isSellInLess0()) {
+            item.clearQualityto0();
+        }
     }
 }

@@ -1,5 +1,10 @@
 package gildedRose;
 
+import gildedRose.ConcreteStrategyImpl.AgedBrie;
+import gildedRose.ConcreteStrategyImpl.BackstagePasses;
+import gildedRose.ConcreteStrategyImpl.Normal;
+import gildedRose.ConcreteStrategyImpl.Sulfuras;
+
 public class GildedRose {
 
     Item[] items;
@@ -10,77 +15,29 @@ public class GildedRose {
 
     public void updateQuality() {
 
+        UpdateItemStrategy updateItemStrategy;
+
         for (Item each : items) {
 
             switch (each.name) {
                 case ItemNameType.AGED_BRIE:
-                    handleAgedBrieItem(each);
+                    updateItemStrategy = new AgedBrie();
                     break;
                 case ItemNameType.BACKSTAGE_PASSES:
-                    handleBackstagePassesItem(each);
+                    updateItemStrategy = new BackstagePasses();
                     break;
                 case ItemNameType.SULFURAS:
-                    handleSulfurasItem(each);
+                    updateItemStrategy = new Sulfuras();
                     break;
                 default:
-                    handleNormalItem(each);
+                    updateItemStrategy = new Normal();
                     break;
             }
 
-        }
-
-    }
-
-    private void handleSulfurasItem(Item each) {
-
-        each.increaseQualityWithin50();
-
-    }
-
-    public void handleBackstagePassesItem(Item each) {
-        if (each.isQulityWithin50()) {
-
-            each.increaseQualityWithin50();
-
-            if (each.sellIn < 11) {
-                each.increaseQualityWithin50();
-            }
-
-            if (each.sellIn < 6) {
-                each.increaseQualityWithin50();
-            }
+            updateItemStrategy.handle(each);
 
         }
 
-        each.decreaseSellIn();
-
-        if (each.isSellInLess0()) {
-            each.clearQualityto0();
-        }
-
-    }
-
-    private void handleAgedBrieItem(Item each) {
-
-        each.increaseQualityWithin50();
-
-        each.decreaseSellIn();
-
-        if (each.isSellInLess0()) {
-            each.increaseQualityWithin50();
-        }
-    }
-
-    private void handleNormalItem(Item each) {
-        if (each.isQulityOver0()) {
-            each.decreaseQuality();
-        }
-
-        each.decreaseSellIn();
-
-        if (each.isSellInLess0() && each.isQulityWithin50()) {
-            each.decreaseQuality();
-        }
     }
 
 

@@ -14,6 +14,12 @@ import gildedRose.UpdateItemStrategy;
 public class AgedBrie implements UpdateItemStrategy {
     @Override
     public void handle(Item item) {
+        item.increaseQualityWithin50();
 
+        item.decreaseSellIn();
+
+        if (item.isSellInLess0()) {
+            item.increaseQualityWithin50();
+        }
     }
 }

@@ -14,6 +14,6 @@ import gildedRose.UpdateItemStrategy;
 public class Sulfuras implements UpdateItemStrategy {
     @Override
     public void handle(Item item) {
-
+        item.increaseQualityWithin50();
     }
 }
