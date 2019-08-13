@@ -24,19 +24,7 @@ public class GildedRose {
 
             else if (isAged_brie(each)) {
 
-                if (isQulityWithin50(each)) {
-                    increaseQuality(each);
-                }
-
-                decreaseSellIn(each);
-
-                if (isSellInLess0(each)) {
-                    if (!isAged_brie(each) && isQulityOver0(each)) {
-                        decreaseQuality(each);
-                    } else {
-                        increaseQuality(each);
-                    }
-                }
+                handleAgedBrieItem(each);
 
             }
 
@@ -81,6 +69,22 @@ public class GildedRose {
 
         }
 
+    }
+
+    private void handleAgedBrieItem(Item each) {
+        if (isQulityWithin50(each)) {
+            increaseQuality(each);
+        }
+
+        decreaseSellIn(each);
+
+        if (isSellInLess0(each)) {
+            if (!isAged_brie(each) && isQulityOver0(each)) {
+                decreaseQuality(each);
+            } else {
+                increaseQuality(each);
+            }
+        }
     }
 
     private void handleNormalItem(Item each) {
