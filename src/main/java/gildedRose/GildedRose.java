@@ -8,8 +8,8 @@ public class GildedRose {
         this.items = items;
     }
 
-
     public void updateQuality() {
+
         for (Item each : items) {
 
 
@@ -17,23 +17,15 @@ public class GildedRose {
 
                 handleNormalItem(each);
 
-            }
-
-
-            else if (isAged_brie(each)) {
+            } else if (isAged_brie(each)) {
 
                 handleAgedBrieItem(each);
 
-            }
-
-            else if (isBackstage_Passes(each)) {
+            } else if (isBackstage_Passes(each)) {
 
                 handleBackstagePassesItem(each);
 
-            }
-
-
-            else if (isSulfuras(each)) {
+            } else if (isSulfuras(each)) {
 
                 handleSulfurasItem(each);
 
@@ -45,25 +37,26 @@ public class GildedRose {
     }
 
     private void handleSulfurasItem(Item each) {
-        if (isQulityWithin50(each)) {
-            increaseQuality(each);
-        }
+
+        increaseQualityWithin50(each);
 
         if (isSellInLess0(each) && isQulityOver0(each) && !isSulfuras(each)) {
             decreaseQuality(each);
         }
+
     }
 
     private void handleBackstagePassesItem(Item each) {
         if (isQulityWithin50(each)) {
-            increaseQuality(each);
+
+            increaseQualityWithin50(each);
 
             if (each.sellIn < 11) {
-                increaseQuality(each);
+                increaseQualityWithin50(each);
             }
 
             if (each.sellIn < 6) {
-                increaseQuality(each);
+                increaseQualityWithin50(each);
             }
 
         }
@@ -71,14 +64,14 @@ public class GildedRose {
         decreaseSellIn(each);
 
         if (isSellInLess0(each)) {
-            clear0Quality(each);
+            clearQualityto0(each);
         }
+
     }
 
     private void handleAgedBrieItem(Item each) {
-        if (isQulityWithin50(each)) {
-            increaseQuality(each);
-        }
+
+        increaseQualityWithin50(each);
 
         decreaseSellIn(each);
 
@@ -86,7 +79,7 @@ public class GildedRose {
             if (!isAged_brie(each) && isQulityOver0(each)) {
                 decreaseQuality(each);
             } else {
-                increaseQuality(each);
+                increaseQualityWithin50(each);
             }
         }
     }
@@ -119,26 +112,23 @@ public class GildedRose {
         return each.quality > 0;
     }
 
-    private void clear0Quality(Item each) {
+    private void clearQualityto0(Item each) {
         each.quality = 0;
     }
 
     private void decreaseSellIn(Item each) {
-        if (!isSulfuras(each)) {
-            each.sellIn--;
-        }
+        each.sellIn--;
     }
 
-    private void increaseQuality(Item item) {
+    private void increaseQualityWithin50(Item item) {
         if (isQulityWithin50(item)) {
-            item.quality = item.quality + 1;
+            item.quality++;
         }
     }
 
     private void decreaseQuality(Item item) {
-        item.quality = item.quality - 1;
+        item.quality--;
     }
-
 
     private boolean isSulfuras(Item item) {
         return item.name.equals("Sulfuras, Hand of Ragnaros");
@@ -151,4 +141,5 @@ public class GildedRose {
     private boolean isAged_brie(Item item) {
         return item.name.equals("Aged Brie");
     }
+
 }
