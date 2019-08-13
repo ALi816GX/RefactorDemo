@@ -109,6 +109,66 @@ public class GildedRoseTest {
 
 
 
+    //----- Backstage passes -----//
+
+
+    @Test
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_15_quality_is_20(){
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Backstage passes to a TAFKAL80ETC concert, 14, 21", result.toString());
+    }
+
+    @Test
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_10_quality_is_20()  {
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Backstage passes to a TAFKAL80ETC concert, 9, 22", result.toString());
+    }
+
+
+    @Test
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_5_quality_is_20()  {
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Backstage passes to a TAFKAL80ETC concert, 4, 23", result.toString());
+    }
+
+
+
+
+    @Test
+    public void should_return_item_given_an_Backstage_passes_item_its_sellIn_is_0_quality_is_20()  {
+        Item item = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20);
+        Item[] items = {item};
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+
+        Item result = gildedRose.items[0];
+
+        Assert.assertEquals("Backstage passes to a TAFKAL80ETC concert, -1, 0", result.toString());
+    }
+
+
 
 
 
